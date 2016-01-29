@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Restaurant Suggestion Aggregator</title>
+        <style>
+            @font-face {
+                font-family: digital-7;
+                src: url(digital-7.ttf);
+            }
+            
+            .rsa-text {
+                font-family: digital-7;
+            }
+            
+            .rsa-container {
+                position: relative;
+            }
+            
+            .rsa-text {
+                position: absolute;
+                top: 123;
+                left: 275;
+                font-size: 1.4em;
+            }
+            
+            #rsa-blinker {
+                width: 5px;
+                height: 5px;
+                background: black;
+                transform: rotate(-45deg);
+                
+                position: absolute;
+                top: 140px;
+                left: 413px;
+                animation: rsa-blinker 1s steps(1, start) infinite;
+            }
+            
+            @keyframes rsa-blinker {
+                0% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="rsa-container">
+            <img src="rsa.diet.svg" width="500" height="276" />
+            <span id="rsa-text" class="rsa-text"></span>
+            <div id="rsa-blinker"></div>
+        </div>
+        
+        <script>
+            var getRandomNumber = function(exclusiveMax) {
+                return Math.round(Math.random() * (exclusiveMax - 1));
+            }
+            
+            var getRestaurantName = function() {
+                var restaurants = ["Tian Fu Noodle", "Thai Chili", "Local Boyz", "Crystals", "Cafe Yumm", "American Dream", "Tarntip"];
+                var randomNumber = getRandomNumber(restaurants.length);
+                return restaurants[randomNumber];
+            };
+            
+            document.onreadystatechange = function(e) {
+                var rsaText = document.getElementById("rsa-text");
+                rsaText.innerHTML = getRestaurantName();
+            };
+        </script>
+    </body>
+</html>
